@@ -99,9 +99,9 @@ function ConvertHandler() {
     let reg = new RegExp(initUnit);
     const conKey = Object.keys(conObj).find(key => key.match(reg));
     if (conKey.indexOf(initUnit) > 0) {
-      result = parseFloat(initNum / conObj[conKey]).toFixed(5);
+      result = parseFloat(initNum / conObj[conKey]).toFixed(6);
     } else {
-      result = parseFloat(initNum * conObj[conKey]).toFixed(5);
+      result = parseFloat(initNum * conObj[conKey]).toFixed(6);
     }
     return result;
   };
