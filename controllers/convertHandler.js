@@ -1,6 +1,7 @@
 function ConvertHandler() {
   
   this.getNum = function(input) {
+    console.log('init-num-input = ', input);
     let result;
     let inpNum = input.replace(/[a-zA-Z]/g,'');
     if (!inpNum) { 
@@ -16,36 +17,29 @@ function ConvertHandler() {
   };
   
   this.getUnit = function(input) {
+    console.log('init-unit-input = ', input);
     let result;
     const units = [ 'kg', 'gal', 'mi', 'km', 'lbs', 'l' ];
     result = input.replace(/[^a-zA-Z]/g,'').toLowerCase();
     if (!units.includes(result))  { return result = 'invalid unit' };
-    switch (result) {
-      case 'l':
-      case 'kg':
-      case 'km':
-        result = result.charAt(0).toUpperCase() + result.slice(1);
-        break;
-      }
-
-
+    if (result === 'l') { result = 'L' };
     return result;
   };
   
   this.getReturnUnit = function(initUnit) {
     let result;
     switch (initUnit) {
-      case 'Kg':
+      case 'kg':
         result = 'lbs'
         break;
       case 'lbs':
-        result = 'Kg';
+        result = 'kg';
         break;
-      case 'Km':
+      case 'km':
         result = 'mi';
         break;
       case 'mi':
-        result = 'Km';
+        result = 'km';
         break;
       case 'L':
         result = 'gal';
@@ -64,13 +58,13 @@ function ConvertHandler() {
   this.spellOutUnit = function(unit) {
     let result;
     switch (unit) {
-      case 'Kg':
+      case 'kg':
         result = 'kilograms'
         break;
       case 'lbs':
         result = 'pounds';
         break;
-      case 'Km':
+      case 'km':
         result = 'kilometers';
         break;
       case 'mi':
@@ -92,16 +86,16 @@ function ConvertHandler() {
   this.convert = function(initNum, initUnit) {
     const conObj = {
     galToL: 3.78541,
-    lbsToKg: 0.453592,
-    miToKm: 1.60934
+    lbsTokg: 0.453592,
+    miTokm: 1.60934
     }
     let result;
     let reg = new RegExp(initUnit);
     const conKey = Object.keys(conObj).find(key => key.match(reg));
     if (conKey.indexOf(initUnit) > 0) {
-      result = parseFloat(initNum / conObj[conKey]).toFixed(6);
+      result = parseFloat((initNum / conObj[conKey]).toFixed(5));
     } else {
-      result = parseFloat(initNum * conObj[conKey]).toFixed(6);
+      result = parseFloat((initNum * conObj[conKey]).toFixed(5));
     }
     return result;
   };

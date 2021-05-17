@@ -43,7 +43,7 @@ suite('Unit Tests', function(){
   });
 
   test('correct Unit Input', function(done){
-    const units = [ 'Kg', 'gal', 'mi', 'Km', 'lbs', 'L' ];
+    const units = [ 'kg', 'gal', 'mi', 'km', 'lbs', 'L' ];
     units.forEach(unit => {
       assert.equal(convertHandler.getUnit('25' + unit), unit);
     });
@@ -59,7 +59,7 @@ suite('Unit Tests', function(){
   });
 
   test('correct Unit Conversion', function(done){
-    const units = [ ['Kg', 'lbs'], ['gal', 'L'], ['mi', 'Km'], ['Km', 'mi'], ['lbs', 'Kg'], ['L', 'gal'] ];
+    const units = [ ['kg', 'lbs'], ['gal', 'L'], ['mi', 'km'], ['km', 'mi'], ['lbs', 'kg'], ['L', 'gal'] ];
 
     units.forEach(unit => {
       assert.equal(convertHandler.getReturnUnit(unit[0]), unit[1]);
@@ -68,7 +68,7 @@ suite('Unit Tests', function(){
   });
 
   test('correct Unit Spelled', function(done){
-    const units = [ ['Kg', 'kilograms'], ['gal', 'gallons'], ['mi', 'miles'], ['Km', 'kilometers'], ['lbs', 'pounds'], ['L', 'litres'] ];
+    const units = [ ['kg', 'kilograms'], ['gal', 'gallons'], ['mi', 'miles'], ['km', 'kilometers'], ['lbs', 'pounds'], ['L', 'litres'] ];
 
     units.forEach(unit => {
       assert.equal(convertHandler.spellOutUnit(unit[0]), unit[1]);
@@ -98,7 +98,7 @@ suite('Unit Tests', function(){
   });
 
   test('Correct Km to mi Conversion', function(done){
-    let unit = 'Km';
+    let unit = 'km';
     let num = '8';
     assert.equal(convertHandler.convert(num, unit), 4.97098);
     done();
@@ -112,7 +112,7 @@ suite('Unit Tests', function(){
   });
 
   test('Correct Kg to lbs Conversion', function(done){
-    let unit = 'Kg';
+    let unit = 'kg';
     let num = '5';
     assert.equal(convertHandler.convert(num, unit), 11.02312);
     done();
